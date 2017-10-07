@@ -1,0 +1,160 @@
+attr global userattr cmdIcon devStateIcon devStateStyle icon sortby webCmd widgetOverride
+attr global autoload_undefined_devices 1
+attr global logfile ./log/fhem-%Y-%m.log
+attr global modpath .
+attr global motd SecurityCheck:\
+\
+WEB,WEBphone,WEBtablet has no associated allowed device with basicAuth.\
+telnetPort has no associated allowed device with password/globalpassword.\
+\
+Restart FHEM for a new check if the problem is fixed,\
+or set the global attribute motd to none to supress this message.\
+
+attr global statefile ./log/fhem.save
+attr global updateInBackground 1
+attr global verbose 3
+
+define telnetPort telnet 7072 global
+
+define WEB FHEMWEB 8083 global
+attr WEB longpoll websocket
+
+define WEBphone FHEMWEB 8084 global
+attr WEBphone stylesheetPrefix smallscreen
+
+define WEBtablet FHEMWEB 8085 global
+attr WEBtablet stylesheetPrefix touchpad
+
+# Fake FileLog entry, to access the fhem log from FHEMWEB 
+define Logfile FileLog ./log/fhem-%Y-%m.log fakelog
+
+define autocreate autocreate
+attr autocreate filelog ./log/%NAME-%Y.log
+
+define eventTypes eventTypes ./log/eventTypes.txt
+
+# Disable this to avoid looking for new USB devices on startup
+define initialUsbCheck notify global:INITIALIZED usb create
+
+define myHmUART HMUARTLGW /dev/ttyAMA0
+attr myHmUART hmId  {{ hmId }}        
+attr myHmUART hmKey {{ hmKey }}
+
+define HM_2E6822 CUL_HM 2E6822
+attr HM_2E6822 IODev myHmUART
+attr HM_2E6822 actCycle 000:10
+attr HM_2E6822 actStatus alive
+attr HM_2E6822 autoReadReg 4_reqStatus
+attr HM_2E6822 expert 2_raw
+attr HM_2E6822 firmware 1.3
+attr HM_2E6822 model HM-CC-RT-DN
+attr HM_2E6822 room Schlafzimmer
+attr HM_2E6822 serialNr LEQ0862150
+attr HM_2E6822 subType thermostat
+attr HM_2E6822 webCmd getConfig:clear msgEvents:burstXmit
+define FileLog_HM_2E6822 FileLog ./log/HM_2E6822-%Y.log HM_2E6822
+attr FileLog_HM_2E6822 logtype text
+attr FileLog_HM_2E6822 room Schlafzimmer
+define HM_2E6822_Weather CUL_HM 2E682201
+attr HM_2E6822_Weather model HM-CC-RT-DN
+attr HM_2E6822_Weather peerIDs 00000000,
+define HM_2E6822_Climate CUL_HM 2E682202
+attr HM_2E6822_Climate model HM-CC-RT-DN
+attr HM_2E6822_Climate peerIDs 00000000,
+define HM_2E6822_WindowRec CUL_HM 2E682203
+attr HM_2E6822_WindowRec model HM-CC-RT-DN
+attr HM_2E6822_WindowRec peerIDs 00000000,
+attr HM_2E6822_WindowRec stateFormat last:trigLast
+define HM_2E6822_Clima CUL_HM 2E682204
+attr HM_2E6822_Clima model HM-CC-RT-DN
+attr HM_2E6822_Clima peerIDs 00000000,
+define HM_2E6822_ClimaTeam CUL_HM 2E682205
+attr HM_2E6822_ClimaTeam model HM-CC-RT-DN
+attr HM_2E6822_ClimaTeam peerIDs 00000000,
+define HM_2E6822_remote CUL_HM 2E682206
+attr HM_2E6822_remote model HM-CC-RT-DN
+attr HM_2E6822_remote peerIDs 00000000,
+define ActionDetector CUL_HM 000000
+attr ActionDetector event-on-change-reading .*
+attr ActionDetector model ActionDetector
+define SVG_FileLog_HM_2E6822_1 SVG FileLog_HM_2E6822:SVG_FileLog_HM_2E6822_1:CURRENT
+attr SVG_FileLog_HM_2E6822_1 room Schlafzimmer
+define HM_2E6877 CUL_HM 2E6877
+attr HM_2E6877 IODev myHmUART
+attr HM_2E6877 actCycle 000:10
+attr HM_2E6877 actStatus alive
+attr HM_2E6877 autoReadReg 4_reqStatus
+attr HM_2E6877 expert 2_raw
+attr HM_2E6877 firmware 1.3
+attr HM_2E6877 model HM-CC-RT-DN
+attr HM_2E6877 room Wohnraum
+attr HM_2E6877 serialNr LEQ0862075
+attr HM_2E6877 subType thermostat
+attr HM_2E6877 webCmd getConfig:clear msgEvents:burstXmit
+define FileLog_HM_2E6877 FileLog ./log/HM_2E6877-%Y.log HM_2E6877
+attr FileLog_HM_2E6877 logtype text
+attr FileLog_HM_2E6877 room Wohnraum
+define HM_2E6877_Weather CUL_HM 2E687701
+attr HM_2E6877_Weather model HM-CC-RT-DN
+attr HM_2E6877_Weather peerIDs 00000000,
+attr HM_2E6877_Weather room Wohnraum
+define HM_2E6877_Climate CUL_HM 2E687702
+attr HM_2E6877_Climate model HM-CC-RT-DN
+attr HM_2E6877_Climate peerIDs 00000000,
+attr HM_2E6877_Climate room Wohnraum
+define HM_2E6877_WindowRec CUL_HM 2E687703
+attr HM_2E6877_WindowRec model HM-CC-RT-DN
+attr HM_2E6877_WindowRec peerIDs 00000000,
+attr HM_2E6877_WindowRec room Wohnraum
+attr HM_2E6877_WindowRec stateFormat last:trigLast
+define HM_2E6877_Clima CUL_HM 2E687704
+attr HM_2E6877_Clima model HM-CC-RT-DN
+attr HM_2E6877_Clima peerIDs 00000000,
+attr HM_2E6877_Clima room Wohnraum
+define HM_2E6877_ClimaTeam CUL_HM 2E687705
+attr HM_2E6877_ClimaTeam model HM-CC-RT-DN
+attr HM_2E6877_ClimaTeam peerIDs 00000000,
+attr HM_2E6877_ClimaTeam room Wohnraum
+define HM_2E6877_remote CUL_HM 2E687706
+attr HM_2E6877_remote model HM-CC-RT-DN
+attr HM_2E6877_remote peerIDs 00000000,
+attr HM_2E6877_remote room Wohnraum
+define SVG_FileLog_HM_2E6877_1 SVG FileLog_HM_2E6877:SVG_FileLog_HM_2E6877_1:CURRENT
+attr SVG_FileLog_HM_2E6877_1 room Wohnraum
+define TABLETUI HTTPSRV ftui/ ./www/tablet/ Tablet-UI
+define HM_2E68B9 CUL_HM 2E68B9
+attr HM_2E68B9 IODev myHmUART
+attr HM_2E68B9 actCycle 000:10
+attr HM_2E68B9 actStatus alive
+attr HM_2E68B9 autoReadReg 4_reqStatus
+attr HM_2E68B9 expert 2_raw
+attr HM_2E68B9 firmware 1.3
+attr HM_2E68B9 model HM-CC-RT-DN
+attr HM_2E68B9 room Emils Zimmer
+attr HM_2E68B9 serialNr LEQ0862003
+attr HM_2E68B9 subType thermostat
+attr HM_2E68B9 webCmd getConfig:clear msgEvents:burstXmit
+define FileLog_HM_2E68B9 FileLog ./log/HM_2E68B9-%Y.log HM_2E68B9
+attr FileLog_HM_2E68B9 logtype text
+attr FileLog_HM_2E68B9 room Emils Zimmer
+define HM_2E68B9_Weather CUL_HM 2E68B901
+attr HM_2E68B9_Weather model HM-CC-RT-DN
+attr HM_2E68B9_Weather peerIDs 00000000,
+define HM_2E68B9_Climate CUL_HM 2E68B902
+attr HM_2E68B9_Climate model HM-CC-RT-DN
+attr HM_2E68B9_Climate peerIDs 00000000,
+define HM_2E68B9_WindowRec CUL_HM 2E68B903
+attr HM_2E68B9_WindowRec model HM-CC-RT-DN
+attr HM_2E68B9_WindowRec peerIDs 00000000,
+attr HM_2E68B9_WindowRec stateFormat last:trigLast
+define HM_2E68B9_Clima CUL_HM 2E68B904
+attr HM_2E68B9_Clima model HM-CC-RT-DN
+attr HM_2E68B9_Clima peerIDs 00000000,
+define HM_2E68B9_ClimaTeam CUL_HM 2E68B905
+attr HM_2E68B9_ClimaTeam model HM-CC-RT-DN
+attr HM_2E68B9_ClimaTeam peerIDs 00000000,
+define HM_2E68B9_remote CUL_HM 2E68B906
+attr HM_2E68B9_remote model HM-CC-RT-DN
+attr HM_2E68B9_remote peerIDs 00000000,
+define SVG_FileLog_HM_2E68B9_1 SVG FileLog_HM_2E68B9:SVG_FileLog_HM_2E68B9_1:CURRENT
+attr SVG_FileLog_HM_2E68B9_1 room Emils Zimmer

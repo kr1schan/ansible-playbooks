@@ -1,0 +1,7 @@
+---
+- hosts: home-server
+  remote_user: pi
+  roles:
+    - home-server-basics
+    - fhem
+

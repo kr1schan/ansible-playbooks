@@ -1,0 +1,3 @@
+---
+- name: power of HDMI - saves ~100mAh
+  command: /opt/vc/bin/tvservice -o

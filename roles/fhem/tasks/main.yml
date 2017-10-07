@@ -1,0 +1,27 @@
+---
+- name: stop fhem
+  service: name=fhem state=stopped
+  become: true
+
+- template: 
+    src:   fhem.cfg.j2
+    dest:  /opt/fhem/fhem.cfg
+    owner: fhem
+    group: dialout
+    mode:  0644
+
+- name: start fhem
+  service: name=fhem state=started
+  become: true
+
+- name: set livingroom temperatur list
+  command: perl /opt/fhem/fhem.pl 7072 "{{ item }}"
+  with_items:
+    - "set HM_2E6877_Clima tempListMon prep 05:30 17.0 07:45 21.0 16:00 17.0 22:00 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListTue prep 05:30 17.0 07:45 21.0 16:00 17.0 22:00 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListWed prep 05:30 17.0 07:45 21.0 16:00 17.0 22:00 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListThu prep 05:30 17.0 07:45 21.0 16:00 17.0 22:00 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListFri prep 05:30 17.0 07:45 21.0 16:00 17.0 22:00 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListSat prep 06:00 17.0 22:30 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListSun exec 06:00 17.0 22:30 21.0 24:00 17.0"
+
