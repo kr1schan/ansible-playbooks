@@ -1,0 +1,34 @@
+---
+- name: set livingroom temperatur list
+  command: perl /opt/fhem/fhem.pl 7072 "{{ item }}"
+  with_items:
+    - "set HM_2E6877_Clima tempListMon prep 06:00 17.0 07:20 21.0 16:30 17.0 21:15 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListTue prep 06:00 17.0 07:20 21.0 16:30 17.0 21:15 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListWed prep 06:00 17.0 07:20 21.0 16:30 17.0 21:15 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListThu prep 06:00 17.0 07:20 21.0 16:30 17.0 21:15 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListFri prep 06:00 17.0 07:20 21.0 16:30 17.0 21:15 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListSat prep 06:00 17.0 22:00 21.0 24:00 17.0"
+    - "set HM_2E6877_Clima tempListSun exec 06:00 17.0 22:00 21.0 24:00 17.0"
+
+- name: set emils room temperatur list
+  command: perl /opt/fhem/fhem.pl 7072 "{{ item }}"
+  with_items:
+    - "set HM_2E68B9_Clima tempListMon prep 06:00 17.0 06:45 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E68B9_Clima tempListTue prep 06:00 17.0 06:45 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E68B9_Clima tempListWed prep 06:00 17.0 06:45 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E68B9_Clima tempListThu prep 06:00 17.0 06:45 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E68B9_Clima tempListFri prep 06:00 17.0 06:45 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E68B9_Clima tempListSat prep 06:00 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E68B9_Clima tempListSun exec 06:00 17.0 20:00 20.5 24:00 17.0"
+
+- name: set bedroom temperatur list
+  command: perl /opt/fhem/fhem.pl 7072 "{{ item }}"
+  with_items:
+    - "set HM_2E6822_Clima tempListMon prep 06:00 17.0 07:20 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E6822_Clima tempListTue prep 06:00 17.0 07:20 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E6822_Clima tempListWed prep 06:00 17.0 07:20 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E6822_Clima tempListThu prep 06:00 17.0 07:20 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E6822_Clima tempListFri prep 06:00 17.0 07:20 20.5 16:30 17.0 20:00 20.5 24:00 17.0"
+    - "set HM_2E6822_Clima tempListSat prep 06:00 17.0 09:00 20.5 19:00 17.0 22:00 20.5 24:00 17.0"
+    - "set HM_2E6822_Clima tempListSun exec 06:00 17.0 09:00 20.5 19:00 17.0 22:00 20.5 24:00 17.0"
+

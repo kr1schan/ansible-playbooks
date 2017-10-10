@@ -1,0 +1,6 @@
+---
+- hosts: home-server
+  remote_user: pi
+  roles:
+    - radiator-plans
+
